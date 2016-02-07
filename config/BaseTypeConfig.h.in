@@ -1,0 +1,4 @@
+// Gestion des versions
+#define BaseType_VERSION_MAJOR @BaseType_VERSION_MAJOR@
+#define BaseType_VERSION_MINOR @BaseType_VERSION_MINOR@
+
