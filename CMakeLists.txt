@@ -1,43 +1,31 @@
 # Version de cmake minimum
-cmake_minimum_required (VERSION 2.6)
+cmake_minimum_required (VERSION 3.0)
+message(STATUS "Version de CMake minimum 3.0")
+
+# Release/Debug
+set(CMAKE_BUILD_TYPE Release)
+message(STATUS "Type de compilation: ${CMAKE_BUILD_TYPE}")
 
 # Nom du projet
-project (BaseType)
+project (BaseType VERSION 0.0.0.4)
+message(STATUS "Nom du projet: ${CMAKE_PROJECT_NAME}")
 
-# Répertoire de création des binaires
-set(LIBRARY_OUTPUT_PATH lib/${CMAKE_BUILD_TYPE})
+add_subdirectory(version-config)
 
-# Version du projet
-set (BaseType_VERSION_MAJOR 0)
-set (BaseType_VERSION_MINOR 1)
+add_subdirectory(include)
 
-# Création des listes de fichiers sources
-file(
-	GLOB_RECURSE
-	source_files
-	src/*
-	include/*
-	)
+add_subdirectory(src)
 
-# Configuration d'un fichier d'entête pour passer
-# quelques valeurs aux codes sources
+add_subdirectory(pkg-config)
 
-configure_file (
-	"config/BaseTypeConfig.h.in"
-	"${PROJECT_BINARY_DIR}/BaseTypeConfig.h"
-	)
+add_subdirectory(tests)
 
-# Ajout du répertoire pour retrouver le fichier d'entête ci dessus
-include_directories("${PROJECT_BINARY_DIR}")
+enable_testing()
+add_test(NAME test_BaseType
+	COMMAND test_BaseType
+)
 
-# Il ne faut pas oublier d'ajouter le répertoire include à la liste
-include_directories("include")
+add_subdirectory(doc)
 
-# On ajoute le nom de l'exécutable ainsi que le fichier principal
-add_library(
-	BaseType
-	SHARED
-	${source_files}
-	)
+add_subdirectory(examples)
 
-# 

@@ -1,0 +1,7 @@
+Name: @CMAKE_PROJECT_NAME@
+Description: Base Type for Dagal Libraries
+Version: @CMAKE_VERSION@
+Requires:
+Libs: -L@CMAKE_INSTALL_PREFIX@/lib
+Cflags: -I@CMAKE_INSTALL_PREFIX@/include
+
